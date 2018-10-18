@@ -3,6 +3,8 @@
 
 !define PERSON_BG_COLOR #08427B
 !define CONTAINER_BG_COLOR #438DD5
+!define COMPONENT_BG_COLOR #6ABADE
+!define CODE_BG_COLOR #5AC6BD
 !define SYSTEM_BG_COLOR #999999
 !define ELEMENT_FONT_COLOR #FFFFFF
 
@@ -40,6 +42,20 @@ skinparam rectangle<<container>> {
     BorderColor #3C7FC0
 }
 
+skinparam rectangle<<component>> {
+    StereotypeFontColor ELEMENT_FONT_COLOR
+    FontColor ELEMENT_FONT_COLOR
+    BackgroundColor COMPONENT_BG_COLOR
+    BorderColor #3C7FC0
+}
+
+skinparam rectangle<<code>> {
+    StereotypeFontColor ELEMENT_FONT_COLOR
+    FontColor ELEMENT_FONT_COLOR
+    BackgroundColor CODE_BG_COLOR
+    BorderColor #3C7FC0
+}
+
 skinparam rectangle<<system>> {
     StereotypeFontColor ELEMENT_FONT_COLOR
     FontColor ELEMENT_FONT_COLOR
@@ -69,6 +85,8 @@ legend right
 |=              |= Type |
 |<PERSON_BG_COLOR>      | person |
 |<CONTAINER_BG_COLOR>   | container |
+|<COMPONENT_BG_COLOR>   | component |
+|<CODE_BG_COLOR>        | code |
 |<SYSTEM_BG_COLOR>      | external system |
 endlegend
 !enddefinelong
@@ -85,6 +103,12 @@ endlegend
 !define Container(e_alias, e_label, e_techn) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//" <<container>> as e_alias
 !define Container(e_alias, e_label, e_techn, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//\n\n e_descr" <<container>> as e_alias
 
+!define Component(e_alias, e_label, e_techn) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//" <<component>> as e_alias
+!define Component(e_alias, e_label, e_techn, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//\n\n e_descr" <<component>> as e_alias
+
+!define Code(e_alias, e_label, e_techn) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//" <<code>> as e_alias
+!define Code(e_alias, e_label, e_techn, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//\n\n e_descr" <<code>> as e_alias
+
 !define System(e_alias, e_label) rectangle "==e_label" <<system>> as e_alias
 !define System(e_alias, e_label, e_descr) rectangle "==e_label\n\n e_descr" <<system>> as e_alias
 
@@ -100,11 +124,11 @@ endlegend
 !define Rel_Back(e_to, e_from, e_label) Rel_(e_to, e_from, e_label, "<--")
 !define Rel_Back(e_to, e_from, e_label, e_techn) Rel_(e_to, e_from, e_label, e_techn, "<--")
 
-!define Rel_Neighbor(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "->")
-!define Rel_Neighbor(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "->")
+!define Rel_Neighbor(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "down")
+!define Rel_Neighbor(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "down")
 
-!define Rel_Back_Neighbor(e_to, e_from, e_label) Rel_(e_to, e_from, e_label, "<-")
-!define Rel_Back_Neighbor(e_to, e_from, e_label, e_techn) Rel_(e_to, e_from, e_label, e_techn, "<-")
+!define Rel_Back_Neighbor(e_to, e_from, e_label) Rel_(e_to, e_from, e_label, "up")
+!define Rel_Back_Neighbor(e_to, e_from, e_label, e_techn) Rel_(e_to, e_from, e_label, e_techn, "up")
 
 !define Rel_D(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-DOWN->")
 !define Rel_D(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-DOWN->")
